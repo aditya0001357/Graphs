@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+#define MOD 1000000007
+#define lli long long int
+#define gap " "
+#define rep for(int i=0; i<n; i++)
+#define repg for(int i=1; i<=n; i++)
+using namespace std;
+
+int dfs(int node, vector<vector<int>> &mat, vector<bool> &visit, vector<int> &sum);
+
+int main()
+{
+    int n; cin>>n;
+    int sor,des;
+    
+    vector<vector<int>> mat(n+1);
+    vector<bool> visit(n+1);
+    vector<int> sum(n+1, 1);
+
+    
+    for(int i=1; i<=n-1; i++)
+    {
+        cin>>sor>>des;
+        mat[sor].push_back(des);
+        mat[des].push_back(sor);
+    }
+
+    int root;
+    cout<<"Enter root : ";
+    cin>>root;
+
+    dfs(root, mat, visit, sum);
+
+    repg
+        cout<<"Size of node "<<i<<<<" : "sum[i]<<gap;
+    
+}
+
+int dfs(int node, vector<vector<int>> &mat, vector<bool> &visit, vector<int> &sum)
+{
+    visit[node]=true;
+
+    int cur,total=1;
+    for(int i=0; i<mat[node].size(); i++)
+    {
+        cur=mat[node][i];
+
+        if(visit[cur]==false)
+        {
+            sum[node] = sum[node]+dfs(cur, mat, visit, sum);
+        }
+    }
+    return sum[node];
+}
