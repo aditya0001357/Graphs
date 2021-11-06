@@ -33,7 +33,7 @@ int main()
     dfs(root, mat, visit, sum);
 
     repg
-        cout<<"Size of node "<<i<<" : "sum[i]<<gap;
+        cout<<"Size of node "<<i<<" : "<<sum[i]<<"\n";
     
 }
 
